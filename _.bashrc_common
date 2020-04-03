@@ -4,3 +4,5 @@
 #
 
 alias gvim="gvim -p"
+# speed up 'xv' in tar with threads
+export XZ_OPT="--threads=0"
