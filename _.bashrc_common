@@ -1,0 +1,6 @@
+#!/bin/bashrc
+#
+# Script to be sourced by .bashrc: Common commands
+#
+
+alias gvim="gvim -p"
