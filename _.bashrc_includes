@@ -1,0 +1,8 @@
+#!/bin/bashrc
+#
+# Script to be sourced by .bashrc: Inclues all needed scripts at once
+#
+
+source _.bashrc_common
+source _.bashrc_term_converter
+source _.bashrc_history
