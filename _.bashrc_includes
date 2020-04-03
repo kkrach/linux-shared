@@ -1,8 +1,17 @@
-#!/bin/bashrc
+#!/bin/bash
 #
 # Script to be sourced by .bashrc: Inclues all needed scripts at once
 #
+if [ -z "$BASH_SOURCE" ] ; then
+	echo "ERROR: This script must be sourced by /bin/bash!"
+	exit 1
+fi
+if [ "$0" = "$BASH_SOURCE" ] ; then
+	echo "ERROR: This script must be sourced!"
+	exit 1
+fi
+BASEPATH=$(dirname $BASH_SOURCE)
 
-source _.bashrc_common
-source _.bashrc_term_converter
-source _.bashrc_history
+source $BASEPATH/_.bashrc_common
+source $BASEPATH/_.bashrc_term_converter
+source $BASEPATH/_.bashrc_history
