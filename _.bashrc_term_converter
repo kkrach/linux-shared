@@ -38,7 +38,7 @@ h2bit_reverse() {
 h2bit() {
 	[ -z "$1" -o "$1" = "-h" ] && echo "h2bit: Converts HEX to bits (each bit set is printed)" && return 0
 	BINARY=`h2b $1`
-	echo -n "Bits "
+	echo -n "$BINARY = Bits "
 	COUNTER=0
 	for LETTER in `echo $BINARY | grep -o . | tac` ; do
 		if [ "$LETTER" = "1" ] ; then
@@ -125,7 +125,13 @@ b2a() {
 }
 be2le() {
 	[ -z "$1" -o "$1" = "-h" ] && echo "be2le: Converts zero-padded big-endian hex numbers to little-endian" && return 0
-	echo "$1" | sed 's/^0x//' | grep -o .. | tac | echo "0x$(tr -d '\n')"
+	HEXSTR=$(echo -n "$1" | sed 's/^0x//')
+	STRLEN=$(echo -n "$HEXSTR" | wc -c)
+	STRLEN_ROUNDED=$(( ($STRLEN+3) / 4 * 4))
+	for CNT in $(seq $(($STRLEN+1)) $STRLEN_ROUNDED) ; do
+		HEXSTR="0$HEXSTR"
+	done
+	echo "$HEXSTR" | grep -o .. | tac | echo "0x$(tr -d '\n') (Bits: $(($STRLEN_ROUNDED*4)))"
 }
 le2be() {
 	[ -z "$1" -o "$1" = "-h" ] && echo "be2le: Converts zero-padded little-endian hex numbers to big-endian" && return 0
