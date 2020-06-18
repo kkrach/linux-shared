@@ -14,6 +14,27 @@ h2b(){
 	LENGTH=`echo $INPUT | wc -c`
 	printf "%$(($LENGTH * 4 - 4))s\n" "$(echo "ibase=16; obase=2; $INPUT" | bc)" | sed 's/ /0/g' | sed 's/\([0-9][0-9][0-9][0-9]\)/\1./g' | sed 's/\.$//'
 }
+h2bit_reverse() {
+	[ -z "$1" -o "$1" = "-h" ] && echo "h2bit: Converts HEX to bits (each bit set is printed)" && return 0
+	BINARY=`h2b $1`
+	echo -n "$BINARY = Bits "
+	BITS=0
+	for LETTER in `echo $BINARY | grep -o . | tac` ; do
+		if [ "$LETTER" != "." ] ; then
+			BITS=$(($BITS + 1))
+		fi
+	done
+	COUNTER=$BITS
+	for LETTER in `echo $BINARY | grep -o . | tac` ; do
+		if [ "$LETTER" = "1" ] ; then
+			echo -n "$COUNTER "
+		fi
+		if [ "$LETTER" != "." ] ; then
+			COUNTER=$(($COUNTER - 1))
+		fi
+	done
+	echo "are set (LSB=$BITS)"
+}
 h2bit() {
 	[ -z "$1" -o "$1" = "-h" ] && echo "h2bit: Converts HEX to bits (each bit set is printed)" && return 0
 	BINARY=`h2b $1`
