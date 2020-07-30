@@ -18,6 +18,8 @@ let loaded_gzip = 1
 let g:loaded_tarPlugin = 1
 let g:loaded_tar       = 1
 
+" enable spell check
+set spell spelllang=en_us
 
 " Make Vim jump to the last position when reopening a file
 if has("autocmd")
