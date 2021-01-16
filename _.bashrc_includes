@@ -16,3 +16,4 @@ source $BASEPATH/_.bashrc_common
 source $BASEPATH/_.bashrc_term_converter
 source $BASEPATH/_.bashrc_history
 source $BASEPATH/_.bashrc_prompt
+source $BASEPATH/_.bashrc_ls_colors
