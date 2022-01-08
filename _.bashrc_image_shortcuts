@@ -1,0 +1,5 @@
+#
+# Image shortcuts
+#
+
+alias rename_jpg_by_date="exiftool -ext jpg '-FileName<CreateDate' -d %Y%m%d_%H%M%S%%-c.%%e ."
