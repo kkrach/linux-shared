@@ -22,7 +22,7 @@ if [ ! -L ~/.config/terminator/config ] ; then
 	fi
 	echo "Creating link for terminator config..."
 	mkdir -p .config/terminator
-	ln -s ${CONFIG_DIR}/\.config\_terminator\_config ~/.config/terminator/config
+	ln -s ${CONFIG_DIR}/\_\.config\_terminator\_config ~/.config/terminator/config
 fi
 
 
